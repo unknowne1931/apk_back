@@ -4605,6 +4605,17 @@ const ResetOTPSchema = new mongoose.Schema(
 
 
 
+process.on('uncaughtException', (err) => {
+  console.error('🔥 Uncaught Exception:', err);
+  // Optional: clean up, alert, or exit
+  process.exit(1); // Let PM2 restart it
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('🚨 Unhandled Rejection:', reason);
+  // Optional: log or alert
+  process.exit(1); // Let PM2 restart it
+});
 
 
 
